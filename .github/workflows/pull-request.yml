@@ -1,6 +1,6 @@
 name: Pull Request
 
-on: 
+on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
 
@@ -8,21 +8,21 @@ jobs:
   pr:
     if: ${{github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - uses: actions/setup-node@v2
-        with: 
+        with:
           node-version: 15
 
       - name: Install Node.js dependencies
         run: npm ci
-      
+
       - name: Lint & Prettier
-        run: | 
+        run: |
           npm run lint
           npm run prettier
 

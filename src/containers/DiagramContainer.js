@@ -39,7 +39,7 @@ function mapStateToProps({
   const isUndoAction = future.length > 0;
   const isAwaiting = connected && awaiting;
   const isCpuTurn = matchType === ONE_VS_CPU && turn === cpuTurn;
-  const isBlack = connected && side === side.black;
+  const isBlack = connected && side === Side.black;
 
   return {
     detectEnPassantTile(tileName) {
@@ -61,7 +61,7 @@ function mapStateToProps({
     detectOn: flippedIncludes([selectedCode, ...movableTiles]),
     detectEnemy: detectEnemyOnTiles(movableTiles, selectedCode),
     checkCode: attackerCode ? kingCode : '',
-    checkRoute: attackerCode,
+    checkRoute: attackerRoutes,
     checkDefenders: defenders,
     preventEvent: isAwaiting || isCpuTurn,
     animate: isUndoAction ? undefined : animate,

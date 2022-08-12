@@ -12,6 +12,10 @@ to execute.
 
 https://reactchess.netlify.app/
 
+OR
+
+https://reactjs-chess.vercel.app/
+
 ## Installation & Start
 
 ```bash

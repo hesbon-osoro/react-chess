@@ -21,18 +21,21 @@ function reducer(state = initialState, action) {
         matchType: payload,
       };
     }
+
     case SAVE_TO_LOCALSTORAGE: {
       return {
         ...state,
         lastSaved: payload,
       };
     }
+
     case TOGGLE_FLIP: {
       return {
         ...state,
         flip: !state.flip,
       };
     }
+
     default: {
       return state;
     }

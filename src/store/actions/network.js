@@ -59,7 +59,9 @@ export function connectedPeerNetwork() {
       dispatch(updateTurn(Turn.w));
       dispatch(ActionCreators.clearHistory());
 
-      dispatch({ type: CONNECTED_PEER_NETWORK });
+      dispatch({
+        type: CONNECTED_PEER_NETWORK,
+      });
     });
   };
 }
@@ -99,7 +101,13 @@ export function sendMessage(message) {
     } = getState();
 
     if (connected) {
-      peerNetwork.send({ command: 'message', args: { side, message } });
+      peerNetwork.send({
+        command: 'message',
+        args: {
+          side,
+          message,
+        },
+      });
     }
 
     dispatch({

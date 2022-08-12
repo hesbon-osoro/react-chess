@@ -4,10 +4,9 @@ import { MEASURE_AXIS } from '../actionTypes';
 
 /**
  * Measure axis for animation
- * @param {Array} sheetData
+ * @param  {Array}   sheetData
  * @return {Boolean}
  */
-
 export function measureAxis(sheetData) {
   return (dispatch, getState) => {
     const {

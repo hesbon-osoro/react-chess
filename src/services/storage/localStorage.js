@@ -7,6 +7,7 @@ export function setItem(key, data) {
     if (typeof data !== 'string') {
       val = JSON.stringify(data);
     }
+
     localStorage.setItem(key, val);
   } catch (err) {
     debug.err('localStorage - setItem issue: ', err);

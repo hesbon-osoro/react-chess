@@ -9,6 +9,7 @@ import Notation from './sheet/Notation';
 
 const Sheet = ({ data }) => {
   const { color } = useTheme();
+
   return (
     <>
       <NotationHeader data={['White', 'Black']} />
@@ -19,7 +20,7 @@ const Sheet = ({ data }) => {
               <Notation sideData={white} />
               <Notation
                 sideData={black}
-                backgroundColor={color.white}
+                backgroundColor={color.black}
                 color={color.white}
               />
             </>
@@ -34,12 +35,13 @@ Sheet.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       white: PropTypes.shape({
-        from: PropTypes.arrayOf(PropTypes.number),
+        from: PropTypes.arrayOf(PropTypes.string),
         to: PropTypes.arrayOf(PropTypes.string),
         check: PropTypes.shape({
           attackerCode: PropTypes.string,
           defenders: PropTypes.arrayOf(PropTypes.string),
           defendTiles: PropTypes.arrayOf(PropTypes.string),
+          dodgeableTiles: PropTypes.arrayOf(PropTypes.string),
         }),
       }),
       black: PropTypes.shape({
@@ -56,6 +58,8 @@ Sheet.propTypes = {
   ),
 };
 
-Sheet.defaultProps = { data: [] };
+Sheet.defaultProps = {
+  data: [],
+};
 
 export default memo(Sheet, equal);

@@ -8,6 +8,7 @@ function NotiBar({ turn, connected, awaiting, thinking }) {
   const cs = color.invert[turn];
   const isAwaiting = connected && awaiting;
   const isTurn = connected && !awaiting;
+
   return (
     <FlexRow borderTop={border}>
       <FlexMiddle
@@ -18,8 +19,9 @@ function NotiBar({ turn, connected, awaiting, thinking }) {
         fontWeight={weight.bold}
         borderRight={border}
       >
-        {turn.substring(0, 1)}{' '}
+        {turn.substring(0, 1)}
       </FlexMiddle>
+
       <FlexOne
         is={Flex}
         alignItems="center"
@@ -32,17 +34,18 @@ function NotiBar({ turn, connected, awaiting, thinking }) {
       >
         <Loading text="...Thinking..." size={20} loading={thinking} />
         <Loading text="...Awaiting..." size={20} loading={isAwaiting} />
+
         {isTurn && <Text marginRight={10}>...Your turn...</Text>}
       </FlexOne>
     </FlexRow>
   );
 }
 
-Notibar.propTypes = {
+NotiBar.propTypes = {
   turn: PropTypes.string.isRequired,
   connected: PropTypes.bool.isRequired,
   awaiting: PropTypes.bool.isRequired,
   thinking: PropTypes.bool.isRequired,
 };
 
-export default memo(Notibar);
+export default memo(NotiBar);

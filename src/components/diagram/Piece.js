@@ -21,17 +21,12 @@ const Piece = ({ pKey, pretendCode }) => {
     // so if `targetCode` is same as `pretendCode`,
     // it means, it is removed piece and to be animated component
     // TODO it will not remove afterimage effect not perfectly
-
     if (animate.targetCode === pretendCode) {
       opacity = 0;
     }
-    return {
-      x: 0,
-      y: 0,
-      opacity,
-    };
-  });
 
+    return { x: 0, y: 0, opacity };
+  });
   const PieceComponent = getPiece(pKey);
 
   useEffect(() => {

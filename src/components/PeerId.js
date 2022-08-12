@@ -9,10 +9,11 @@ const PeerId = ({ peerId }) => {
   return (
     <FlexRow paddingLeft={10} paddingRight={10} fontSize="80%">
       <Text marginBottom={5} fontWeight={weight.bold} flexBasis={60}>
-        Peer Id
+        Peer Id:
       </Text>
+
       {peerId && (
-        <FlexOne is={Text} workBreak="break-all">
+        <FlexOne is={Text} wordBreak="break-all">
           {peerId}
         </FlexOne>
       )}
@@ -23,6 +24,7 @@ const PeerId = ({ peerId }) => {
 PeerId.propTypes = {
   peerId: PropTypes.string,
 };
+
 PeerId.defaultProps = {
   peerId: '',
 };

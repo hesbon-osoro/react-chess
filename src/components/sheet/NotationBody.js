@@ -8,10 +8,10 @@ const NotationBody = ({ data, children }) => {
 
   return (
     <Box>
-      {data.map((item, index) => {
+      {data.map((item, idx) => {
         return (
           <FlexRow
-            key={index}
+            key={idx}
             justifyContent="space-between"
             borderBottom={border}
           >
@@ -52,7 +52,7 @@ NotationBody.propTypes = {
 };
 
 NotationBody.defaultProps = {
-  data: null,
+  sideData: null,
 };
 
 export default NotationBody;

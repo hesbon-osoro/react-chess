@@ -31,14 +31,18 @@ const Chat = ({ data, sendMessage }) => {
         onKeyDown={handleKeyDown}
         placeholder="leave message here!"
       />
+
       <Scroll is="ul" height={60} margin={10} padding={0} listStyle="none">
-        {reverse(data).map(({ side, message }, idx) => (
-          <Box is="li" key={idx}>
-            <Text>
-              [{Turn[side]}] {message}
-            </Text>
-          </Box>
-        ))}
+        {reverse(data).map(({ side, message }, idx) => {
+          // TODO color
+          return (
+            <Box is="li" key={idx}>
+              <Text>
+                [{Turn[side]}] {message}
+              </Text>
+            </Box>
+          );
+        })}
       </Scroll>
     </FlexCol>
   );

@@ -37,7 +37,7 @@ function mapStateToProps({
   animate,
 }) {
   const isUndoAction = future.length > 0;
-  const isAwaiting = connected && awaiting;
+  const isAwating = connected && awaiting;
   const isCpuTurn = matchType === ONE_VS_CPU && turn === cpuTurn;
   const isBlack = connected && side === Side.black;
 
@@ -55,6 +55,7 @@ function mapStateToProps({
           [-1, 1],
         ]);
       }
+
       return detectPawn(selectedCode) && isEnemyTile;
     },
     getPKey: getPKeyByTile(snapshot),
@@ -63,7 +64,7 @@ function mapStateToProps({
     checkCode: attackerCode ? kingCode : '',
     checkRoute: attackerRoutes,
     checkDefenders: defenders,
-    preventEvent: isAwaiting || isCpuTurn,
+    preventEvent: isAwating || isCpuTurn,
     animate: isUndoAction ? undefined : animate,
     flip: flip || isBlack,
     movableTiles,
@@ -85,9 +86,11 @@ function mapDispatchToProps(dispatch) {
       if (isSameSide) {
         dispatch(updateSelectedCode(pretendCode));
       }
+
       if (isEnemyTile) {
         dispatch(capturePiece(pretendCode, nextTileName));
       }
+
       if (isMovable) {
         dispatch(movePiece(nextTileName));
       }
@@ -110,6 +113,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
       dispatchProps.decideAction(
         // get arguments from actual callback
         () => ({ nextTileName, pretendCode }),
+
         // state from `mapStateToProps`
         () => stateProps
       );

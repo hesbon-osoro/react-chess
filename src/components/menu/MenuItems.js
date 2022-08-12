@@ -13,6 +13,7 @@ const MenuItems = ({ data }) => {
               <Button onClick={onClick} {...itemProps}>
                 {title}
               </Button>
+
               {Extra && <Extra />}
             </Fragment>
           );

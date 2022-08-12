@@ -27,6 +27,7 @@ function reducer(state = initialState, action) {
         peerId: payload,
       };
     }
+
     case CLOSE_NETWORK_GAME: {
       return {
         ...state,
@@ -34,6 +35,7 @@ function reducer(state = initialState, action) {
         connected: false,
       };
     }
+
     case CONNECTED_PEER_NETWORK:
     case JOIN_NETWORK_GAME: {
       return {
@@ -41,18 +43,21 @@ function reducer(state = initialState, action) {
         connected: true,
       };
     }
+
     case DECIDE_SIDE: {
       return {
         ...state,
         side: payload,
       };
     }
+
     case TOGGLE_AWAITING: {
       return {
         ...state,
         awaiting: !state.awaiting,
       };
     }
+
     case RECEIVE_MESSAGE:
     case SEND_MESSAGE: {
       const chatData =
@@ -60,11 +65,13 @@ function reducer(state = initialState, action) {
         [
           /* for legacy */
         ];
+
       return {
         ...state,
         chatData: [...chatData, payload],
       };
     }
+
     default: {
       return state;
     }

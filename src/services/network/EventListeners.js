@@ -10,10 +10,11 @@ export default class EventListeners {
     this.dispatch = dispatch;
 
     peerNetwork.on('booted', (id) => this.#handleBooted(id));
-    peerNetwork.on('onlinw', () => this.#handleOnline());
+    peerNetwork.on('online', () => this.#handleOnline());
     peerNetwork.on('received', (data) => this.#handleReceived(data));
     peerNetwork.on('close', () => this.#handleClose());
     peerNetwork.on('error', () => this.#handleClose());
+    // peerNetwork.on('disconnected', this.handleClose);
   }
 
   static of(store) {
@@ -52,8 +53,12 @@ export default class EventListeners {
       switch (command) {
         case 'message': {
           this.dispatch(
-            receiveMessage({ side: args.side, message: args.message })
+            receiveMessage({
+              side: args.side,
+              message: args.message,
+            })
           );
+
           break;
         }
 
@@ -72,10 +77,13 @@ export default class EventListeners {
           } else if (command === 'move') {
             nextArgs.push(_replaceCode(args.selectedCode));
           }
+
           this.dispatch(afterMoving(...nextArgs));
           this.dispatch(toggleAwaiting());
+
           break;
         }
+
         default:
       }
     });
@@ -87,5 +95,4 @@ export default class EventListeners {
     });
   }
 }
-
 export { peerNetwork };

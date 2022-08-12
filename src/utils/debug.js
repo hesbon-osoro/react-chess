@@ -3,25 +3,25 @@ import { IS_DEV } from '~/presets';
 
 /**
  * Debug only
- * @param {Object?} [options={}]
+ * @param  {Object?}  [options={}]
  * @return {Function} curry
  */
-
 function createDebug(options = {}) {
   options = {
     mode: 'log',
     ...options,
   };
+
   /**
-   * @param {String} label
-   * @param {...*}
+   * @param  {String} label
+   * @param  {...*}   v
    * @return {*}
    */
-
   return (label, ...v) => {
     if (IS_DEV) {
       console[options.mode](label, ...v);
     }
+
     return v;
   };
 }

@@ -21,9 +21,11 @@ const Tile = ({ isDark, pKey, tileName }) => {
       onClick={handleClick}
     >
       <Mask pretendCode={pretendCode} tileName={tileName} />
+
       <Absolute color={color.gray2}>
         <Text padding={5}>{tileName}</Text>
       </Absolute>
+
       <Piece pKey={pKey} pretendCode={pretendCode} />
     </FlexOne>
   );

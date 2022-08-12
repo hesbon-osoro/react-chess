@@ -24,7 +24,10 @@ import {
 export function updateMatchType(key) {
   return (dispatch) => {
     batch(() => {
-      dispatch({ type: UPDATE_MATCH_TYPE, payload: key });
+      dispatch({
+        type: UPDATE_MATCH_TYPE,
+        payload: key,
+      });
       dispatch(updateSnapshot(Snapshot));
       dispatch(removeSelectedCode());
       dispatch(removeMovableTiles());
@@ -45,7 +48,10 @@ export function saveGame() {
     const lastSaved = +new Date();
     const data = {
       ...currState,
-      general: { lastSaved, ...currState.general },
+      general: {
+        lastSaved,
+        ...currState.general,
+      },
     };
 
     Storage.setItem(SAVE_GAME, data);
@@ -95,5 +101,7 @@ export function exportGame() {
 }
 
 export function toggleFlip() {
-  return { type: TOGGLE_FLIP };
+  return {
+    type: TOGGLE_FLIP,
+  };
 }

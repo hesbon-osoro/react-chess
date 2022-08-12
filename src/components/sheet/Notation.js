@@ -11,6 +11,7 @@ const Notation = ({ sideData, ...props }) => {
       is={Text}
       textAlign="center"
       backgroundColor={color.white}
+      color={color.black}
       padding={5}
       {...props}
     >
@@ -32,6 +33,8 @@ Notation.propTypes = {
   }),
 };
 
-Notation.defaultProps = { sideData: null };
+Notation.defaultProps = {
+  sideData: null,
+};
 
 export default Notation;

@@ -17,6 +17,7 @@ function reducer(state = initialState, action) {
         thinking: false,
       };
     }
+
     case TOGGLE_THINKING: {
       return {
         ...state,

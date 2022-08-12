@@ -20,6 +20,7 @@ function App() {
       <Relative flexBasis={height}>
         <DiagramContainer />
       </Relative>
+
       <FlexOne
         backgroundColor={color.gray1}
         borderLeft={border}
@@ -27,14 +28,17 @@ function App() {
       >
         <FlexCol height="100%" justifyContent="space-between">
           <Text is="h1" textAlign="center" marginTop={30}>
-            React Chess
+            React-Chess
           </Text>
+
           <Flex is="figure" justifyContent="center">
             <Logo width={logo.width} height={logo.height} />
           </Flex>
+
           <Box padding={20} paddingTop={0} paddingBottom={10} marginTop={20}>
             <MenuContainer />
           </Box>
+
           <Scroll
             is={FlexOne}
             backgroundColor={color.white}
@@ -43,6 +47,7 @@ function App() {
           >
             <SheetContainer />
           </Scroll>
+
           <NotiBarContainer />
         </FlexCol>
       </FlexOne>

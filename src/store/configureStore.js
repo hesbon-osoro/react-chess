@@ -7,30 +7,30 @@ import { Compression } from '~/services/io';
 import { Storage } from '~/services/storage';
 import { debug } from '~/utils';
 import reducers from './reducers';
-import { crashReporter } from './middleware';
+import { crashReporter } from './middlewares';
 
 const composeDev = IS_DEV ? composeWithDevTools : identity;
 const _applyMiddleware = apply(applyMiddleware);
 
 function configureStore(preloadedState) {
-  let initialState = preloadedState;
+  let intitalState = preloadedState;
 
   try {
     const importData = Storage.getItem(INSTANT_IMPORT_DATA);
     const saveData = JSON.parse(Storage.getItem(SAVE_GAME));
 
-    initialState = importData
+    intitalState = importData
       ? JSON.parse(Compression.decompress(importData))
       : saveData || preloadedState;
   } catch (err) {
-    debug.err('Redux - initial-state issue: ', err);
+    debug.err('Redux - intital-state issue: ', err);
   } finally {
     Storage.removeItem(INSTANT_IMPORT_DATA);
   }
 
   return createStore(
     reducers,
-    initialState,
+    intitalState,
     compose(composeDev, _applyMiddleware)([thunk, crashReporter])
   );
 }

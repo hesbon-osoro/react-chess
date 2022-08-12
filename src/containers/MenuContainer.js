@@ -59,10 +59,10 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         onClick: () => dispatch(undo()),
       },
       // {
-      //     key: ActionTypes.REDO,
-      //     title: 'Redo',
-      //     disabled: future.length === 0
-      // }
+      //   key: ActionTypes.REDO,
+      //   title: 'Redo',
+      //   disabled: future.length === 0,
+      // },
     ],
     mainMenu: [
       {
@@ -119,6 +119,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
           if (isConnected) {
             return <ChatContainer />;
           }
+
           return <PeerIdContainer />;
         },
       },

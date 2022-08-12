@@ -25,7 +25,8 @@ const File = ({ rankName }) => {
 };
 
 File.propTypes = {
-  rankName: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  rankName: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
 
 export default File;

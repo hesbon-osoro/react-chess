@@ -17,6 +17,7 @@ class PeerNetwork extends EventEmitter {
     this.peer.on('close', () => this.#handlePeerClose());
     this.peer.on('error', (err) => this.emit('error', err));
   }
+
   static of() {
     return new PeerNetwork();
   }
@@ -25,6 +26,7 @@ class PeerNetwork extends EventEmitter {
     if (!this.conn) {
       return;
     }
+
     this.conn.send(data);
   }
 
@@ -32,7 +34,10 @@ class PeerNetwork extends EventEmitter {
     if (this.conn) {
       this.conn.close();
     }
-    this.conn = this.peer.connect(id, { reliable: true });
+
+    this.conn = this.peer.connect(id, {
+      reliable: true,
+    });
 
     this.conn.on('open', () => this.conn.send('online'));
 
@@ -44,6 +49,7 @@ class PeerNetwork extends EventEmitter {
       switch (data) {
         case 'online': {
           this.emit('online');
+
           break;
         }
 
@@ -62,6 +68,7 @@ class PeerNetwork extends EventEmitter {
     } else {
       this.lastPeerId = this.peer.id;
     }
+
     this.emit('booted', this.peer.id);
   }
 
@@ -72,6 +79,7 @@ class PeerNetwork extends EventEmitter {
 
         setTimeout(c.close(), 500);
       });
+
       return;
     }
 

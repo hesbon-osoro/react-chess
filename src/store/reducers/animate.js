@@ -2,7 +2,10 @@ import { MEASURE_AXIS } from '../actionTypes';
 
 const initialState = {
   targetCode: '',
-  from: { x: 0, y: 0 },
+  from: {
+    x: 0,
+    y: 0,
+  },
 };
 
 function reducer(state = initialState, action) {

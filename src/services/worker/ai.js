@@ -8,13 +8,11 @@ self.onmessage = ({ data }) => {
     present,
     past,
   } = data;
-
   const iV = StateBuilder.createInitialV({
     timeline: createTimeline(present, past),
     side: Side[present.turn],
     ...checkData,
   });
-
   const codeList = AI.createList(iV.side, iV.snapshot);
   const stateList = [];
   let bestMove = -9999;
@@ -31,7 +29,7 @@ self.onmessage = ({ data }) => {
 
   for (let i = 0, len = stateList.length; i < len; i++) {
     const state = stateList[i];
-    const score = AI.minmax(state, depth - 1, -10000, 10000, false);
+    const score = AI.minimax(state, depth - 1, -10000, 10000, false);
 
     if (score >= bestMove) {
       bestMove = score;
@@ -41,5 +39,7 @@ self.onmessage = ({ data }) => {
   console.timeEnd('worker');
 
   console.log(bestMove, bestState.node);
-  self.postMessage({ bestState });
+  self.postMessage({
+    bestState,
+  });
 };

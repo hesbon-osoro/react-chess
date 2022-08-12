@@ -43,7 +43,7 @@ export function removeCheck() {
 
 /**
  * Update turn literally
- * @param {String} turn
+ * @param  {String} turn
  * @return {Object}
  */
 export function updateTurn(turn) {
@@ -55,7 +55,7 @@ export function updateTurn(turn) {
 
 /**
  * Update snapshot
- * @param {String} snapshot
+ * @param  {String} snapshot
  * @return {Object}
  */
 export function updateSnapshot(snapshot) {
@@ -124,7 +124,12 @@ export function capturePiece(pretendCode, nextTileName) {
       if (connected && !awaiting) {
         peerNetwork.send({
           command: 'capture',
-          args: { pretendCode, nextTileName, selectedCode, snapshot },
+          args: {
+            pretendCode,
+            nextTileName,
+            selectedCode,
+            snapshot,
+          },
         });
 
         dispatch(toggleAwaiting());
@@ -209,7 +214,6 @@ export function afterMoving(nextTileName, selectedCode, getNextSnapshot) {
         curr: 'wRh1',
         next: 'wRf1',
       },
-
       bKc8: {
         curr: 'bRa8',
         next: 'bRd8',
@@ -219,22 +223,21 @@ export function afterMoving(nextTileName, selectedCode, getNextSnapshot) {
         next: 'bRf8',
       },
     };
-
     const { side, piece, pKey } = Chess.parseCode(selectedCode);
     const nextCode = `${pKey}${nextTileName}`;
     const mvs = Chess.Special[piece] || [];
     let nextSnapshot = clone(snapshot); // default snapshot for safeness
 
     if (typeof getNextSnapshot === 'function') {
-      // default snapshot before applying special movement
-      nextSnapshot = getNextSnapshot(nextSnapshot);
+      // default snapshot before appying special movement
+      nextSnapshot = getNextSnapshot(nextCode);
     } else {
-      nextSnapshot = getNextSnapshot; //array
+      nextSnapshot = getNextSnapshot; // array
     }
 
     mvs.forEach((mvName) => {
       switch (mvName) {
-        case Chess.CastlingMap: {
+        case Chess.Castling: {
           const { file } = Chess.computeDistance(selectedCode, nextCode);
 
           // filter it first, otherwise TypeError(`CastlingMap`)
@@ -280,6 +283,7 @@ export function afterMoving(nextTileName, selectedCode, getNextSnapshot) {
 
           break;
         }
+
         default:
       }
     });
@@ -347,7 +351,7 @@ export function updateCheckState(selectedCode) {
     } = getState();
 
     const timeline = Chess.createTimeline(present, past);
-    const { data, isCheck, isStalement, isCheckmate } = Chess.computeCheckState(
+    const { data, isCheck, isStalemate, isCheckmate } = Chess.computeCheckState(
       selectedCode,
       timeline
     );
@@ -356,7 +360,7 @@ export function updateCheckState(selectedCode) {
       type: types.UPDATE_CHECK_CODE,
       payload: {
         isCheck,
-        isStalement,
+        isStalemate,
         isCheckmate,
         ...data,
       },

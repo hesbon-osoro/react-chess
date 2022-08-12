@@ -19,6 +19,7 @@ const initialState = {
     dodgeableTiles: [],
   },
 };
+
 function reducer(state = initialState, action) {
   const { type, payload } = action;
 
@@ -29,6 +30,7 @@ function reducer(state = initialState, action) {
         turn: payload,
       };
     }
+
     case types.UPDATE_SNAPSHOT: {
       return {
         ...state,
@@ -42,49 +44,56 @@ function reducer(state = initialState, action) {
         selectedCode: payload,
       };
     }
+
     case types.REMOVE_SELECTED_CODE: {
       return {
         ...state,
         selectedCode: '',
       };
     }
+
     case types.UPDATE_MOVABLE_TILES: {
       return {
         ...state,
         movableTiles: payload,
       };
     }
+
     case types.REMOVE_MOVABLE_TILES: {
       return {
         ...state,
         movableTiles: [],
       };
     }
+
     case types.UPDATE_CHECK_CODE: {
       return {
         ...state,
         checkData: payload,
       };
     }
+
     case types.UPDATE_SHEET_DATA: {
       return {
         ...state,
         sheetData: payload,
       };
     }
+
     case types.REMOVE_SHEET_DATA: {
       return {
         ...state,
         sheetData: [],
       };
     }
+
     case types.REMOVE_CHECK: {
       return {
         ...state,
         checkData: {
           isCheck: false,
-          isCheckmate: false,
           isStalemate: false,
+          isCheckmate: false,
           kingCode: '',
           defenders: [],
           defendTiles: [],
@@ -94,6 +103,7 @@ function reducer(state = initialState, action) {
         },
       };
     }
+
     default: {
       return state;
     }

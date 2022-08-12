@@ -1,10 +1,9 @@
 /**
  * Convert to date to local string
- * @param {Date|string} date
- * @param {Object?} options
- * @returns {String}
+ * @param  {Date|string} date
+ * @param  {Object?}     options
+ * @return {String}
  */
-
 function toLocaleDate(
   date,
   options = {

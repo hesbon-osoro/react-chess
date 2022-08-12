@@ -1,5 +1,9 @@
 # React Chess
 
+[![Chess](src/assets/react-chess.png)](https://reactjs-chess.vercel.app/
+)
+
+
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c7198546-2525-4fd7-a87d-217089008e27/deploy-status)](https://reactchess.netlify.app/)
 

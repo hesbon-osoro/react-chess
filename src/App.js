@@ -17,7 +17,7 @@ function App() {
 
   return (
     <FlexRow height={fh} minWidth={minMaxWidth} maxWidth={minMaxWidth}>
-      <Relative flexBasics={height}>
+      <Relative flexBasis={height}>
         <DiagramContainer />
       </Relative>
       <FlexOne
